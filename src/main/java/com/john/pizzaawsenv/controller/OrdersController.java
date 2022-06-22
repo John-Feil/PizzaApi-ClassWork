@@ -85,7 +85,8 @@ public class OrdersController {
     @GetMapping("/orders/{id}/customer")
     public ResponseEntity<?> getCustomerByOrderId(@PathVariable Long id) {
         logger.info("Getting customer from order " + id);
-        return new ResponseEntity<>(ordersService.getCustomerById(id) ,HttpStatus.OK);
+        Order order = ordersService.getOrder(id);
+        return new ResponseEntity<>(ordersService.getCustomerById(order.getCustomer().getId()) ,HttpStatus.OK);
     }
 
 }
